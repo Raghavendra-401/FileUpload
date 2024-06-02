@@ -33,18 +33,24 @@ sap.ui.define([
                         oModel.create("/Files", payloadData, {
                             success: function (OData, res) {
                                 let response = OData;
-                                //  oModel.update("/Files")
                             }.bind(this),
                             error: function (oError) {
                                 let error = oError;
                             }
                         })
                     }.bind(this)
-
                 }.bind(this), (error) => {
                     MessageToast.show("The file cannot be read. It may have changed.");
                 }).then(() => {
                     // oFileUploader.clear();
+                });
+            },
+            onPressDownloadButton: function () {
+                let oUploadSet = this.getView().byId("UploadSet");
+                oUploadSet.getItems().forEach(function (oItem) {
+                    if (oItem.getListItem().getSelected()) {
+                        oItem.download(true);
+                    }
                 });
             }
         });
