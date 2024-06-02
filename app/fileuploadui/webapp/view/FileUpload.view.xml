@@ -1,0 +1,27 @@
+<mvc:View controllerName="fileuploadui.controller.FileUpload"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:u="sap.ui.unified"
+    xmlns:upload="sap.m.upload">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <u:FileUploader id="fileUploader" name="myFileUpload" uploadUrl="upload/" tooltip="Upload your file to the local server" uploadComplete="handleUploadComplete" mimeType="[application/pdf]" httpRequestMethod="Post" />
+            <Button id="button" text="Upload File" press="handleUploadPress" />
+            <upload:UploadSet id="UploadSet" instantUpload="false" showIcons="true" uploadEnabled="false" terminationEnabled="true" fileTypes="txt,doc,png" maxFileNameLength="30" maxFileSize="200" mediaTypes="text/plain,application/msword,image/png" items="{path: '/Files', templateShareable: false}" mode="MultiSelect" selectionChanged="onSelectionChange">
+            <!-- <upload:toolbar>
+              <OverflowToolbar >
+                 <Button text="Download Selected File" press="onPressDownloadButton"></Button>
+              </OverflowToolbar>
+            </upload:toolbar> -->
+                <upload:items>
+                    <upload:UploadSetItem fileName="{fileName}" mediaType="{fileType}" url="{url}" enabledEdit="false" visibleEdit="false" />
+                </upload:items>
+            </upload:UploadSet>
+            <!-- <PDFViewer source="{/Files}" isTrustedSource="true" title="{/fileName}">
+				<layoutData>
+					<FlexItemData growFactor="1" />
+				</layoutData>
+			</PDFViewer> -->
+        </content>
+    </Page>
+</mvc:View>

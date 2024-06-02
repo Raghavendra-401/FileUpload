@@ -1,0 +1,44 @@
+{
+  "name": "fileUpload",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@cap-js-community/odata-v2-adapter": "^1.12.9",
+    "@sap/cds": "^7",
+    "@sap/cds-hana": "^2",
+    "@sap/hana-client": "^2.20.23",
+    "@sap/xssec": "^3",
+    "express": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^1.7.0",
+    "@sap/cds-dk": "^7",
+    "@sap/eslint-plugin-ui5-jsdocs": "^2.0.5",
+    "@sap/hdi-deploy": "4.9.4",
+    "@sap/ux-specification": "^1.120.9",
+    "@sapui5/ts-types": "^1.92.2",
+    "eslint": "^7.32.0",
+    "rimraf": "^3.0.2"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-fileuploadui": "cds watch --open fileuploadui/webapp/index.html?sap-ui-xx-viewCache=false",
+    "undeploy": "cf undeploy fileUpload --delete-services --delete-service-keys --delete-service-brokers",
+    "build": "rimraf resources mta_archives && mbt build --mtar archive",
+    "deploy": "cf deploy mta_archives/fileUpload_1.0.0.mtar --retries 1"
+  },
+  "cds": {
+    "requires": {
+      "db": "hana"
+    },
+    "cov2ap": {
+      "plugin": true
+    },
+    "hana": {
+      "deploy-format": "hdbtable"
+    }
+  }
+}

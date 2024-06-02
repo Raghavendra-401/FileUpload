@@ -1,0 +1,13 @@
+### GET
+
+GET http://localhost:4004/odata/v2/file-management/Files
+
+
+### POST
+
+POST http://localhost:4004/odata/v2/file-management/Files
+Content-Type: application/pdf
+
+slug : invoice_oneplus.pdf
+
+< ./invoice-oneplus.pdf
